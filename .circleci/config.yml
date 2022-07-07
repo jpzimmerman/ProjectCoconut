@@ -18,6 +18,7 @@ jobs:
           name: "Build Application (dotnet)"
           command: dotnet build --configuration Release
   push-to-docker:
+    machine: true
     description: Build and Push Docker image
     steps:
       - docker/check:
