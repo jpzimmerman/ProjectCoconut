@@ -20,14 +20,14 @@ jobs:
   push-to-docker:
     machine: true
     description: Build and Push Docker image
-    steps: |
+    steps:
       - docker/check:
           docker-username: DOCKER_USER
           docker-password: DOCKER_ACCESS_GRANT
-      - docker/build:
-        -image: DOCKER_USER/projectcoconut
-      -docker/push:
-        -image: DOCKER_USER/projectcoconut:latest
+      #- docker/build:
+      #  -image: DOCKER_USER/projectcoconut
+      #-docker/push:
+      #  -image: DOCKER_USER/projectcoconut:latest
       #    command: docker tag projectcoconut $DOCKER_USER/projectcoconut
 
         
