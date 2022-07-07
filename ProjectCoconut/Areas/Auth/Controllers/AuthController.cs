@@ -9,7 +9,6 @@ namespace ProjectCoconut.Areas.Auth.Controllers
         [HttpGet]
         public string Index() => "yay";
         
-
         [HttpGet]
         public IActionResult Login(string returnUrl = "/", string provider = "Identity.Application")
         {
