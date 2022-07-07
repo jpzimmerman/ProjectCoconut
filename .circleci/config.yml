@@ -22,8 +22,15 @@ jobs:
     description: Build and Push Docker image
     steps:
       - docker/check:
-          docker-username: DOCKER_FAKE
+          docker-username: DOCKER_USER
           docker-password: DOCKER_ACCESS_GRANT
+      - docker/build:
+        -image: DOCKER_USER/projectcoconut
+      -docker/push:
+        -image: DOCKER_USER/projectcoconut:latest
+
+      - docker/push:
+
       #    command: docker tag projectcoconut $DOCKER_USER/projectcoconut
 
         
