@@ -22,7 +22,7 @@ jobs:
     description: Build and Push Docker image
     steps:
       - run:
-          name: Login to Docker repo
+          name: "Login to Docker repo"
           command: docker login -u $DOCKER_USER -p $DOCKER_ACCESS_GRANT
           name: "Build Docker image"
           command: docker build -t projectcoconut .
