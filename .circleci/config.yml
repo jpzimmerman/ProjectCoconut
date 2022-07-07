@@ -21,12 +21,11 @@ jobs:
       -image : circleci/docker@1.4.0
     description: Build and Push Docker image
     steps:
-      - run:
+      - run: |
           name: "Login to Docker repo"
-          command: docker login -u $DOCKER_USER -p $DOCKER_ACCESS_GRANT
-      - run:
-          name: "Build Docker image"
-          command: docker build -t projectcoconut .
+          command: | 
+            docker login -u $DOCKER_USER -p $DOCKER_ACCESS_GRANT
+            docker build -t projectcoconut .
       - run:
           name: "Tag Docker image"
           command: docker tag projectcoconut $DOCKER_USER/projectcoconut
