@@ -3,6 +3,7 @@
 version: 2.1
 orbs:
   windows: circleci/windows@4.1.1
+  docker: circleci/docker
 
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
@@ -17,18 +18,12 @@ jobs:
           name: "Build Application (dotnet)"
           command: dotnet build --configuration Release
   push-to-docker:
-    docker:
-      -image: circleci/docker
     description: Build and Push Docker image
     steps:
-      - run: 
-          name: "Login to Docker repo"
-          command: | 
-            docker login -u $DOCKER_USER -p $DOCKER_ACCESS_GRANT
-            docker build -t projectcoconut .
-      - run:
-          name: "Tag Docker image"
-          command: docker tag projectcoconut $DOCKER_USER/projectcoconut
+      - docker/check:
+          docker-username: $DOCKER_USER
+          docker-password: $DOCKER_ACCESS_GRANT
+      #    command: docker tag projectcoconut $DOCKER_USER/projectcoconut
 
         
 
