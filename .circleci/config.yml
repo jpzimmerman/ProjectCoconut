@@ -21,7 +21,7 @@ jobs:
       -image : circleci/docker@1.4.0
     description: Build and Push Docker image
     steps:
-      - run: |
+      - run: 
           name: "Login to Docker repo"
           command: | 
             docker login -u $DOCKER_USER -p $DOCKER_ACCESS_GRANT
