@@ -28,9 +28,6 @@ jobs:
         -image: DOCKER_USER/projectcoconut
       -docker/push:
         -image: DOCKER_USER/projectcoconut:latest
-
-      - docker/push:
-
       #    command: docker tag projectcoconut $DOCKER_USER/projectcoconut
 
         
