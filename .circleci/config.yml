@@ -14,7 +14,7 @@ jobs:
     steps:
       - checkout
       - run:
-          name: "Build Application according to some given configuration"
+          name: "Build Application (dotnet)"
           command: dotnet build --configuration Release
 
 # Invoke jobs via workflows
