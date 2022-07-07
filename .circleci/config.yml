@@ -3,7 +3,7 @@
 version: 2.1
 orbs:
   windows: circleci/windows@4.1.1
-  docker: circleci/docker
+  docker: circleci/docker@1.7.0
 
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
