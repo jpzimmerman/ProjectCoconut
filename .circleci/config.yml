@@ -20,7 +20,7 @@ jobs:
   push-to-docker:
     machine: true
     description: Build and Push Docker image
-    steps:
+    steps: |
       - docker/check:
           docker-username: DOCKER_USER
           docker-password: DOCKER_ACCESS_GRANT
