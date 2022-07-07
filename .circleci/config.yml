@@ -9,8 +9,8 @@ orbs:
 jobs:
   build:
     description: Build application with Release configuration
-    executor:
-      name: windows/default
+    docker:
+      - image: mcr.microsoft.com/dotnet/aspnet:6.0
     steps:
       - checkout
       - run:
