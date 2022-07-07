@@ -11,14 +11,14 @@ namespace ProjectCoconut.Areas.Auth.Controllers
         
 
         [HttpGet]
-        public IActionResult Login(string returnUrl = "/", string provider = "GitHub")
+        public IActionResult Login(string returnUrl = "/", string provider = "Identity.Application")
         {
             return Challenge(new AuthenticationProperties()
             {
                 ExpiresUtc = DateTime.UtcNow.AddMinutes(5.0f),
                 RedirectUri = returnUrl,
                 AllowRefresh = false,
-            }, "Identity.Application"); ;
+            }, provider);
         }
 
         [HttpGet]
