@@ -24,8 +24,10 @@ jobs:
       - run:
           name: "Login to Docker repo"
           command: docker login -u $DOCKER_USER -p $DOCKER_ACCESS_GRANT
+      - run:
           name: "Build Docker image"
           command: docker build -t projectcoconut .
+      - run:
           name: "Tag Docker image"
           command: docker tag projectcoconut $DOCKER_USER/projectcoconut
 
