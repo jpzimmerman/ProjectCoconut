@@ -18,7 +18,7 @@ jobs:
           command: dotnet build --configuration Release
   push-to-docker:
     docker:
-      -image : circleci/docker@1.4.0
+      -image: circleci/docker
     description: Build and Push Docker image
     steps:
       - run: 
