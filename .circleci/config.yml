@@ -26,22 +26,22 @@ jobs:
           name: Add configuration values
           command: |
             sed -n -i 's/GOOGLE_CLIENT_ID/$GOOGLE_CLIENT_ID/' ./ProjectCoconut/appsettings.json
-            sed -i 's/GOOGLE_CLIENT_SECRET/$GOOGLE_CLIENT_SECRET/' ./ProjectCoconut/appsettings.json
+            sed -n -i 's/GOOGLE_CLIENT_SECRET/$GOOGLE_CLIENT_SECRET/' ./ProjectCoconut/appsettings.json
       - docker/check:
           docker-username: DOCKER_USER
           docker-password: DOCKER_ACCESS_GRANT
       - docker/build:
           image: projectcoconut
-          tag: $TAG
+          tag: $CIRCLE_SHA1
       - run:
           name: Show Docker images
           command: docker image ls
       - run:
           name: Tag Docker image
-          command: docker tag projectcoconut:$TAG jpzimmerman/projectcoconut:TAG
+          command: docker tag projectcoconut:$CIRCLE_SHA1 jpzimmerman/projectcoconut:$CIRCLE_SHA1
       - docker/push:
           image: jpzimmerman/projectcoconut:$TAG
-          tag: $TAG
+          tag: $CIRCLE_SHA1
 
         
 
