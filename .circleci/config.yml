@@ -31,6 +31,9 @@ jobs:
       - docker/build:
           image: projectcoconut
       - run:
+          name: Show Docker images
+          command: docker image ls
+      - run:
           name: Tag Docker image
           command: docker tag projectcoconut:$tag jpzimmerman/projectcoconut:$tag
       - docker/push:
