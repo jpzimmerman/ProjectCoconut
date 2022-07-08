@@ -30,8 +30,9 @@ jobs:
           docker-password: DOCKER_ACCESS_GRANT
       - docker/build:
           image: projectcoconut
-      - docker/tag:
-          image: jpzimmerman/projectcoconut
+      - run:
+          name: Tag Docker image
+          command: docker tag projectcoconut jpzimmerman/projectcoconut
       - docker/push:
           image: jpzimmerman/projectcoconut
 
