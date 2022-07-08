@@ -39,6 +39,7 @@ jobs:
           command: docker tag projectcoconut:latest jpzimmerman/projectcoconut:latest
       - docker/push:
           image: jpzimmerman/projectcoconut
+          tag: latest
 
         
 
