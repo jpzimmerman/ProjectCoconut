@@ -32,7 +32,7 @@ jobs:
           image: projectcoconut
       - docker/tag:
           image: jpzimmerman/projectcoconut
-      -docker/push:
+      - docker/push:
           image: jpzimmerman/projectcoconut
 
         
