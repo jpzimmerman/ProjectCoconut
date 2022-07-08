@@ -30,6 +30,7 @@ jobs:
           docker-password: DOCKER_ACCESS_GRANT
       - docker/build:
           image: projectcoconut
+          tag: latest
       - run:
           name: Show Docker images
           command: docker image ls
