@@ -23,23 +23,25 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Show image contents
-          command: ls
+          name: Add configuration values
+          command: |
+            sed -i 's/GOOGLE_CLIENT_ID/$GOOGLE_CLIENT_ID' ./ProjectCoconut/appsettings.json
+            sed -i 's/GOOGLE_CLIENT_SECRET/$GOOGLE_CLIENT_SECRET' ./ProjectCoconut/appsettings.json
       - docker/check:
           docker-username: DOCKER_USER
           docker-password: DOCKER_ACCESS_GRANT
       - docker/build:
           image: projectcoconut
-          tag: latest
+          tag: $TAG
       - run:
           name: Show Docker images
           command: docker image ls
       - run:
           name: Tag Docker image
-          command: docker tag projectcoconut:latest jpzimmerman/projectcoconut:latest
+          command: docker tag projectcoconut:$TAG jpzimmerman/projectcoconut:TAG
       - docker/push:
-          image: jpzimmerman/projectcoconut
-          tag: latest
+          image: jpzimmerman/projectcoconut:$TAG
+          tag: $TAG
 
         
 
