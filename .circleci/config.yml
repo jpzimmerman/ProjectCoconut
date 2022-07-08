@@ -32,7 +32,7 @@ jobs:
           image: projectcoconut
       - run:
           name: Tag Docker image
-          command: docker tag projectcoconut jpzimmerman/projectcoconut
+          command: docker tag projectcoconut:$tag jpzimmerman/projectcoconut:$tag
       - docker/push:
           image: jpzimmerman/projectcoconut
 
