@@ -35,7 +35,8 @@ jobs:
     machine: true
     description: Build and Push Docker image
     steps:
-      - attach_workspace
+      - attach_workspace:
+          at: ./      
       - docker/check:
           docker-username: DOCKER_USER
           docker-password: DOCKER_ACCESS_GRANT
