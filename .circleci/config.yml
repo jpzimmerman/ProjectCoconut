@@ -3,6 +3,7 @@
 version: 2.1
 orbs:
   windows: circleci/windows@4.1.1
+  docker: circleci/docker@1.7.0
 
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
@@ -12,10 +13,52 @@ jobs:
       - image: mcr.microsoft.com/dotnet/sdk:6.0
     description: Build application with Release configuration
     steps:
+      - attach_workspace:
+          at: ./
       - checkout
+      - run:
+          name: Add configuration values
+          command: |
+            sed -i "s/GOOGLE_CLIENT_ID/$GOOGLE_CLIENT_ID/" ./ProjectCoconut/appsettings.json
+            sed -i "s/GOOGLE_CLIENT_SECRET/${GOOGLE_CLIENT_SECRET}/" ./ProjectCoconut/appsettings.json
       - run:
           name: "Build Application (dotnet)"
           command: dotnet build --configuration Release
+      - run:
+          name: "Directory and contents"
+          command: pwd & ls
+      - persist_to_workspace:
+          root: ./
+          paths:
+            [ ProjectCoconut, Dockerfile ]
+  push-to-docker:
+    machine: true
+    description: Build and Push Docker image
+    steps:
+      - attach_workspace:
+          at: ./
+      - docker/check:
+          docker-username: DOCKER_USER
+          docker-password: DOCKER_ACCESS_GRANT
+      - docker/build:
+          image: projectcoconut
+          tag: $CIRCLE_SHA1
+      - run:
+          name: Show Docker images
+          command: docker image ls
+      - run:
+          name: Tag Docker image
+          command: docker tag projectcoconut:$CIRCLE_SHA1 jpzimmerman/projectcoconut:$CIRCLE_SHA1
+      - docker/push:
+          image: jpzimmerman/projectcoconut
+          tag: $CIRCLE_SHA1
+      - persist_to_workspace:
+          root: ./
+          paths:
+            [ ProjectCoconut ]
+
+        
+
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
@@ -23,3 +66,5 @@ workflows:
   default:
     jobs:
       - build
+      - push-to-docker:
+          requires: [ build ]
