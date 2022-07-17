@@ -17,8 +17,8 @@ jobs:
       - run:
           name: Add configuration values
           command: |
-            sed -i 's/GOOGLE_CLIENT_ID/$DUMMY_CLIENT_ID/' ./ProjectCoconut/appsettings.json
-            sed -i 's/GOOGLE_CLIENT_SECRET/${DUMMY_CLIENT_SECRET}/' ./ProjectCoconut/appsettings.json
+            sed -i 's/GOOGLE_CLIENT_ID/$DUMMY_CLIENT_ID/' ./appsettings.json
+            sed -i 's/GOOGLE_CLIENT_SECRET/${DUMMY_CLIENT_SECRET}/' ./appsettings.json
       - run:
           name: "Build Application (dotnet)"
           command: dotnet build --configuration Release
