@@ -28,15 +28,15 @@ jobs:
           name: "Directory and contents"
           command: pwd & ls
       - persist_to_workspace:
-          root: ./
+          root: root/project
           paths:
-            - echo-output
+            - *
   push-to-docker:
     machine: true
     description: Build and Push Docker image
     steps:
       - attach_workspace:
-          at: ./      
+          at: root/project
       - docker/check:
           docker-username: DOCKER_USER
           docker-password: DOCKER_ACCESS_GRANT
@@ -53,7 +53,7 @@ jobs:
           image: jpzimmerman/projectcoconut
           tag: $CIRCLE_SHA1
       - persist_to_workspace:
-          root: ./
+          root: root/project
           paths:
             - echo-output
 
