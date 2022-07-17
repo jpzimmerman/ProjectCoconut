@@ -13,8 +13,8 @@ jobs:
       - image: mcr.microsoft.com/dotnet/sdk:6.0
     description: Build application with Release configuration
     steps:
-      - attach_workspace
-         at: ./
+      - attach_workspace:
+          at: ./
       - checkout
       - run:
           name: Add configuration values
@@ -26,6 +26,8 @@ jobs:
           command: dotnet build --configuration Release
       - persist_to_workspace:
           root: ./
+          paths:
+            - echo-output
   push-to-docker:
     machine: true
     description: Build and Push Docker image
@@ -48,6 +50,8 @@ jobs:
           tag: $CIRCLE_SHA1
       - persist_to_workspace:
           root: ./
+          paths:
+            - echo-output
 
         
 
