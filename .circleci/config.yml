@@ -53,7 +53,7 @@ jobs:
           image: jpzimmerman/projectcoconut
           tag: $CIRCLE_SHA1
       - persist_to_workspace:
-          root: root/project
+          root: ./
           paths:
             [ ProjectCoconut ]
 
