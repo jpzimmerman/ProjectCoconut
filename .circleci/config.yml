@@ -25,8 +25,8 @@ jobs:
       - run:
           name: Add configuration values
           command: |
-            sed -i 's/GOOGLE_CLIENT_ID/$GOOGLE_CLIENT_ID/g' ./ProjectCoconut/appsettings.json
-            sed -i 's/GOOGLE_CLIENT_SECRET/${GOOGLE_CLIENT_SECRET}/' ./ProjectCoconut/appsettings.json
+            sed -i 's/GOOGLE_CLIENT_ID/$DUMMY_CLIENT_ID/' ./ProjectCoconut/appsettings.json
+            sed -i 's/GOOGLE_CLIENT_SECRET/${DUMMY_CLIENT_SECRET}/' ./ProjectCoconut/appsettings.json
       - docker/check:
           docker-username: DOCKER_USER
           docker-password: DOCKER_ACCESS_GRANT
