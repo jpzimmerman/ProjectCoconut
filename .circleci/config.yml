@@ -24,6 +24,9 @@ jobs:
       - run:
           name: "Build Application (dotnet)"
           command: dotnet build --configuration Release
+      - run:
+          name: "Directory and contents"
+          command: pwd & ls
       - persist_to_workspace:
           root: ./
   push-to-docker:
@@ -58,4 +61,5 @@ workflows:
   default:
     jobs:
       - build
-      - push-to-docker
+      - push-to-docker:
+          requires: [ build ]
