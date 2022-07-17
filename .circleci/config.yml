@@ -13,6 +13,7 @@ jobs:
       - image: mcr.microsoft.com/dotnet/sdk:6.0
     description: Build application with Release configuration
     steps:
+      - attach_workspace
       - checkout
       - run:
           name: Add configuration values
@@ -22,10 +23,12 @@ jobs:
       - run:
           name: "Build Application (dotnet)"
           command: dotnet build --configuration Release
+      - persist_to_workspace
   push-to-docker:
     machine: true
     description: Build and Push Docker image
     steps:
+      - attach_workspace
       - docker/check:
           docker-username: DOCKER_USER
           docker-password: DOCKER_ACCESS_GRANT
@@ -41,6 +44,7 @@ jobs:
       - docker/push:
           image: jpzimmerman/projectcoconut
           tag: $CIRCLE_SHA1
+      - persist_to_workspace:
 
         
 
