@@ -28,7 +28,7 @@ jobs:
           name: "Directory and contents"
           command: pwd & ls
       - persist_to_workspace:
-          root: root/project
+          root: ./
           paths:
             [ ProjectCoconut, Dockerfile ]
   push-to-docker:
@@ -36,7 +36,7 @@ jobs:
     description: Build and Push Docker image
     steps:
       - attach_workspace:
-          at: root/project
+          at: ./
       - docker/check:
           docker-username: DOCKER_USER
           docker-password: DOCKER_ACCESS_GRANT
