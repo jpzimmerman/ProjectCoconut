@@ -30,7 +30,7 @@ jobs:
       - persist_to_workspace:
           root: root/project
           paths:
-            - [ ProjectCoconut, Dockerfile ]
+            [ ProjectCoconut, Dockerfile ]
   push-to-docker:
     machine: true
     description: Build and Push Docker image
